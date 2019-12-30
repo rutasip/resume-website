@@ -143,7 +143,7 @@ function watchFiles() {
 
 // Deploy to gh pages
 
-gulp.task("deploy", ["build"], function() {
+gulp.task("deploy", function() {
   return gulp.src("./dist/**/*").pipe(deploy());
 });
 
