@@ -6,25 +6,13 @@ const browsersync = require("browser-sync").create();
 const cleanCSS = require("gulp-clean-css");
 const del = require("del");
 const gulp = require("gulp");
-const header = require("gulp-header");
 const merge = require("merge-stream");
 const plumber = require("gulp-plumber");
 const rename = require("gulp-rename");
 const sass = require("gulp-sass");
 const uglify = require("gulp-uglify");
+const imagemin = require("gulp-imagemin");
 const deploy = require("gulp-gh-pages");
-
-// Load package.json for banner
-const pkg = require("./package.json");
-
-// Set the banner content
-const banner = [
-  "/*!\n",
-  " * Bootstrap Resume - <%= pkg.title %> v<%= pkg.version %> (<%= pkg.homepage %>)\n",
-  " * Copyright 2019-" + new Date().getFullYear(),
-  " */\n",
-  "\n"
-].join("");
 
 // BrowserSync
 function browserSync(done) {
@@ -53,26 +41,31 @@ function modules() {
   // Bootstrap
   var bootstrap = gulp
     .src("./node_modules/bootstrap/dist/**/*")
-    .pipe(gulp.dest("./vendor/bootstrap"));
+    .pipe(gulp.dest("./vendor/bootstrap"))
+    .pipe(gulp.dest("dist/vendor/bootstrap"));
   // Font Awesome CSS
   var fontAwesomeCSS = gulp
     .src("./node_modules/@fortawesome/fontawesome-free/css/**/*")
-    .pipe(gulp.dest("./vendor/fontawesome-free/css"));
+    .pipe(gulp.dest("./vendor/fontawesome-free/css"))
+    .pipe(gulp.dest("dist/vendor/fontawesome-free/css"));
   // Font Awesome Webfonts
   var fontAwesomeWebfonts = gulp
     .src("./node_modules/@fortawesome/fontawesome-free/webfonts/**/*")
-    .pipe(gulp.dest("./vendor/fontawesome-free/webfonts"));
+    .pipe(gulp.dest("./vendor/fontawesome-free/webfonts"))
+    .pipe(gulp.dest("dist/vendor/fontawesome-free/webfonts"));
   // jQuery Easing
   var jqueryEasing = gulp
     .src("./node_modules/jquery.easing/*.js")
-    .pipe(gulp.dest("./vendor/jquery-easing"));
+    .pipe(gulp.dest("./vendor/jquery-easing"))
+    .pipe(gulp.dest("dist/vendor/jquery-easing"));
   // jQuery
   var jquery = gulp
     .src([
       "./node_modules/jquery/dist/*",
       "!./node_modules/jquery/dist/core.js"
     ])
-    .pipe(gulp.dest("./vendor/jquery"));
+    .pipe(gulp.dest("./vendor/jquery"))
+    .pipe(gulp.dest("dist/vendor/jquery"));
   return merge(
     bootstrap,
     fontAwesomeCSS,
@@ -99,12 +92,8 @@ function css() {
         cascade: false
       })
     )
-    .pipe(
-      header(banner, {
-        pkg: pkg
-      })
-    )
     .pipe(gulp.dest("./css"))
+    .pipe(gulp.dest("dist/css"))
     .pipe(
       rename({
         suffix: ".min"
@@ -112,6 +101,7 @@ function css() {
     )
     .pipe(cleanCSS())
     .pipe(gulp.dest("./css"))
+    .pipe(gulp.dest("dist/css"))
     .pipe(browsersync.stream());
 }
 
@@ -121,16 +111,12 @@ function js() {
     .src(["./js/*.js", "!./js/*.min.js"])
     .pipe(uglify())
     .pipe(
-      header(banner, {
-        pkg: pkg
-      })
-    )
-    .pipe(
       rename({
         suffix: ".min"
       })
     )
     .pipe(gulp.dest("./js"))
+    .pipe(gulp.dest("dist/js"))
     .pipe(browsersync.stream());
 }
 
@@ -141,8 +127,15 @@ function watchFiles() {
   gulp.watch("./**/*.html", browserSyncReload);
 }
 
-// Deploy to gh pages
+// Optimize Images
+gulp.task("imageMin", () =>
+  gulp
+    .src("./img/*")
+    .pipe(imagemin())
+    .pipe(gulp.dest("dist/img"))
+);
 
+// // Deploy to gh pages
 gulp.task("deploy", function() {
   return gulp.src("./dist/**/*").pipe(deploy());
 });
