@@ -98,13 +98,16 @@
             <span class="text-primary">Šipkauskaitė</span>
           </h1>
           <div class="subheading mb-5">
-            Vilnius, Lithuania · +370 64528801 ·
-            <a href="mailto:ruta.sipkauskaite@gmail.com"
-              >ruta.sipkauskaite@gmail.com</a
-            >
+            Full Stack Developer based in Vilnius, Lithuania
           </div>
           <p class="lead mb-5">
-            Description coming soon.
+            Hello! <br />
+            My name is Rūta. I am a hard-working, reliable web developer. I love
+            being in this line of work because I am passionate about technology,
+            design, and innovation. <br />
+            Front-end development is my niche but I am open for full-stack
+            offers. For any enquiries, please contact me through linkedin or
+            upwork.
           </p>
           <div class="social-icons">
             <a
@@ -112,6 +115,12 @@
               href="https://www.linkedin.com/in/ruta-sipkauskaite/"
             >
               <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a
+              target="_blank"
+              href="https://www.upwork.com/o/profiles/users/_~013873213ad5c9c81d/"
+            >
+              <img src="https://imgur.com/TLpZ1jf.png" width="38px" />
             </a>
             <a target="_blank" href="https://github.com/rutasip">
               <i class="fab fa-github"></i>
@@ -233,7 +242,16 @@
               <i class="fab fa-react"></i>
             </li>
             <li class="list-inline-item">
+              <i class="fab fa-angular"></i>
+            </li>
+            <li class="list-inline-item">
               <i class="fab fa-node-js"></i>
+            </li>
+            <li class="list-inline-item">
+              <i class="fab fa-html5"></i>
+            </li>
+            <li class="list-inline-item">
+              <i class="fab fa-css3-alt"></i>
             </li>
             <li class="list-inline-item">
               <i class="fab fa-sass"></i>
@@ -253,6 +271,24 @@
             <li class="list-inline-item">
               <i class="fab fa-npm"></i>
             </li>
+            <li class="list-inline-item">
+              <i class="fab fa-git"></i>
+            </li>
+            <li>
+              <p>
+                ... for a full and updated list icluding examples see my
+                <a
+                  target="_blank"
+                  href="https://www.linkedin.com/in/ruta-sipkauskaite/"
+                >
+                  linkedIn
+                </a>
+                or
+                <a target="_blank" href="https://github.com/rutasip">
+                  github
+                </a>
+              </p>
+            </li>
           </ul>
 
           <div class="subheading mb-3">Workflow</div>
@@ -260,6 +296,10 @@
             <li>
               <i class="fa-li fa fa-check"></i>
               Mobile-First, Responsive Design
+            </li>
+            <li>
+              <i class="fa-li fa fa-check"></i>
+              Clean, uncluttered UI and on User-centered Design
             </li>
             <li>
               <i class="fa-li fa fa-check"></i>
@@ -277,9 +317,44 @@
       >
         <div class="w-100">
           <h2 class="mb-5">Portfolio</h2>
-          <p>
-            Coming soon.
-          </p>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card">
+                <img
+                  class="card-img-top"
+                  src="./img/mybid.png"
+                  alt="Card image cap"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">mybid.lt</h5>
+                  <p class="card-text">
+                    With supporting text below as a natural lead-in to
+                    additional content.
+                  </p>
+                  <a href="#" class="card-link">Open Github</a>
+                  <a href="#" class="card-link">View Demo</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mt-3 mt-md-0">
+              <div class="card">
+                <img
+                  class="card-img-top"
+                  src="./img/rutasip.png"
+                  alt="Card image cap"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">rutasip.com</h5>
+                  <p class="card-text">
+                    With supporting text below as a natural lead-in to
+                    additional content.
+                  </p>
+                  <a href="#" class="card-link">Open Github</a>
+                  <a href="#" class="card-link">View Demo</a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -336,5 +411,14 @@
 
     <!-- Custom scripts for this template -->
     <script src="js/resume.min.js"></script>
+    <script type="text/javascript">
+      const scene = document.querySelectorAll(".scene");
+
+      for (i = 0; i < scene.length; i++) {
+        scene[i].addEventListener("click", function() {
+          this.classList.toggle("card-flip");
+        });
+      }
+    </script>
   </body>
 </html>
